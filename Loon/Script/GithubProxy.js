@@ -1,13 +1,6 @@
 (() => {
   const proxyUrl = `https://ghproxy.com`;
   $done({
-    response: {
-      status: 200,
-      headers: {},
-      body: "",
-    },
+    url: `${proxyUrl}/${$request.url}`,
   });
-  //   $done({
-  //     url: `${proxyUrl}/${$request.url}`,
-  //   });
 })();
