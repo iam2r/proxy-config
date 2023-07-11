@@ -1,6 +1,0 @@
-#!name=Github Proxy
-#!desc=Github 文件代理加速
-#!author=iam2r
-[Script]
-http-request ^https?:\/\/raw\.githubusercontent.com\/(.*)\/[0-9a-zA-Z_-]+\.[0-9a-zA-Z_-]+$ script-path=https://raw.githubusercontent.com/iam2r/ProxyConfig/main/Loon/Script/GithubProxy.js, requires-body=1, tag=Github Proxy
-
