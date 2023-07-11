@@ -1,0 +1,10 @@
+#!name=VideoFusionVipCrack
+#!desc=脚本功能：解锁会员权限 🔓 • 解锁会员模版 • 解锁会员特效 • 解锁会员转场 • 解锁会员滤镜 • 解锁会员贴纸 • 解锁草稿功能 • 解锁高阶功能▎支持版本：v9.8.2 旧版
+[Script]
+
+# > 剪映解锁会员
+http-request ^https?:\/\/commerce-api-.*\.faceu\.mobi\/commerce\/v1\/(subscription\/user_info|purchase\/draft_unlock|effect\/check_effects) script-path=https://raw.githubusercontent.com/yqc007/QuantumultX/master/VideoFusionVipCrack.js, timeout=60 ,tag=VideoFusionVipCrack_11
+
+[MITM]
+
+hostname = api*.faceu.mobi,api3-lq.faceu.mobi,commerce-api-lf.faceu.mobi,commerce-api-lq.faceu.mobi,lv-api-lq.ulikecam.com,lv-api-hl.ulikecam.com
