@@ -1,11 +1,6 @@
 #!name=NeteaseMusicVipCrack
-#!desc=解锁部分黑胶会员权限
- • 去除全局广告
- • 阻止日志上传
- • 解锁会员歌曲
- • 解锁会员音质
- • 解锁会员下载
-
+#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/120px/NeteaseCloudMusic.png
+#!desc=解锁部分黑胶会员权限 • 去除全局广告 • 阻止日志上传 • 解锁会员歌曲 • 解锁会员音质 • 解锁会员下载
 
 [Rewrite]
 
