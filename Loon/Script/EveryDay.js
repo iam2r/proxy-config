@@ -34,7 +34,7 @@ const festivalList = [
 let holidayList = [];
 !(async () => {
   await handleFestival();
-  await $.wait(500);
+//   await $.wait(500);
   await toNotify();
 })()
   .catch((e) => $.logErr(e))
