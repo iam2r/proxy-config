@@ -1351,9 +1351,6 @@ function Env(t, e) {
           case "Stash":
           case "Shadowrocket":
           default:
-            console.log('$notification')
-            console.log(typeof $notification.post)
-            console.log('$notification2')
             $notification.post(e, s, a, i(r));
             break;
           case "Quantumult X":
@@ -1361,7 +1358,7 @@ function Env(t, e) {
             break;
           case "Node.js":
         }
-      if (!this.isMuteLog) {
+      if (!this.isMuteLog && !this.isLoon) {
         let t = [
           "",
           "==============\ud83d\udce3\u7cfb\u7edf\u901a\u77e5\ud83d\udce3==============",
