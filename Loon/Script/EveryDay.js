@@ -34,7 +34,7 @@ const festivalList = [
 let holidayList = [];
 !(async () => {
   await handleFestival();
-//   await $.wait(500);
+  //   await $.wait(500);
   await toNotify();
 })()
   .catch((e) => $.logErr(e))
@@ -128,8 +128,7 @@ function toNotify() {
     ];
     const notifyImage =
       notifyImgs[Math.floor(Math.random() * notifyImgs.length)];
-      $notification.post(scriptName, '', content,{ "media-url": notifyImage });
-    // $.msg(scriptName, "", content, { "media-url": notifyImage });
+    $.msg(scriptName, "", content, { "media-url": notifyImage });
     resolve();
   });
 }
@@ -1350,6 +1349,7 @@ function Env(t, e) {
           case "Stash":
           case "Shadowrocket":
           default:
+            console.log('dsfsdfsdfsf')
             $notification.post(e, s, a, i(r));
             break;
           case "Quantumult X":
