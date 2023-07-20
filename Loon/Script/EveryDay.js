@@ -39,6 +39,84 @@ let holidayList = [];
 })()
   .catch((e) => $.logErr(e))
   .finally(() => $.done());
+
+function msg(e = t, s = "", a = "", r) {
+  const i = (t) => {
+    switch (typeof t) {
+      case void 0:
+        return t;
+      case "string":
+        switch ($.getEnv()) {
+          case "Surge":
+          case "Stash":
+          default:
+            return { url: t };
+          case "Loon":
+          case "Shadowrocket":
+            return t;
+          case "Quantumult X":
+            return { "open-url": t };
+          case "Node.js":
+            return;
+        }
+      case "object":
+        switch ($.getEnv()) {
+          case "Surge":
+          case "Stash":
+          case "Shadowrocket":
+          default: {
+            let e = t.url || t.openUrl || t["open-url"];
+            return { url: e };
+          }
+          case "Loon": {
+            let e = t.openUrl || t.url || t["open-url"],
+              s = t.mediaUrl || t["media-url"];
+            return { openUrl: e, mediaUrl: s };
+          }
+          case "Quantumult X": {
+            let e = t["open-url"] || t.url || t.openUrl,
+              s = t["media-url"] || t.mediaUrl,
+              a = t["update-pasteboard"] || t.updatePasteboard;
+            return {
+              "open-url": e,
+              "media-url": s,
+              "update-pasteboard": a,
+            };
+          }
+          case "Node.js":
+            return;
+        }
+      default:
+        return;
+    }
+  };
+  if (!$.isMute)
+    switch ($.getEnv()) {
+      case "Surge":
+      case "Loon":
+      case "Stash":
+      case "Shadowrocket":
+      default:
+        $notification.post(e, s, a, i(r));
+        break;
+      case "Quantumult X":
+        $notify(e, s, a, i(r));
+        break;
+      case "Node.js":
+    }
+  if (!$.isMuteLog) {
+    let t = [
+      "",
+      "==============\ud83d\udce3\u7cfb\u7edf\u901a\u77e5\ud83d\udce3==============",
+    ];
+    t.push(e),
+      s && t.push(s),
+      a && t.push(a),
+      console.log(t.join("\n")),
+      ($.logs = $.logs.concat(t));
+  }
+}
+
 /**
  * 处理节日
  */
@@ -129,7 +207,7 @@ function toNotify() {
     const notifyImage =
       notifyImgs[Math.floor(Math.random() * notifyImgs.length)];
 
-    $.msg(scriptName, "", content, { "media-url": notifyImage });
+    msg(scriptName, "", content, { "media-url": notifyImage });
 
     resolve();
   });
@@ -1358,7 +1436,7 @@ function Env(t, e) {
             break;
           case "Node.js":
         }
-      if (!this.isMuteLog && !this.isLoon) {
+      if (!this.isMuteLog) {
         let t = [
           "",
           "==============\ud83d\udce3\u7cfb\u7edf\u901a\u77e5\ud83d\udce3==============",
