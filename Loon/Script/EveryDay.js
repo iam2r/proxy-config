@@ -130,7 +130,7 @@ function toNotify() {
       notifyImgs[Math.floor(Math.random() * notifyImgs.length)];
 
     if ($.isLoon) {
-      $notification.post(scriptName, "", content);
+      $notification.post(scriptName, "", content, { "media-url": notifyImage });
     } else {
       $.msg(scriptName, "", content, { "media-url": notifyImage });
     }
