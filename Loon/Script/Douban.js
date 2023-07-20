@@ -220,9 +220,7 @@ function Env(t, e) {
         (this.logSeparator = "\n"),
         (this.encoding = "utf-8"),
         (this.startTime = new Date().getTime()),
-        Object.assign(this, e),
-        this.log('',JSON.stringify(e))
-        
+        Object.assign(this, e),        
         this.log("", `\ud83d\udd14${this.name}, \u5f00\u59cb!`);
     }
     getEnv() {

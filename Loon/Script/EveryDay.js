@@ -129,12 +129,8 @@ function toNotify() {
     const notifyImage =
       notifyImgs[Math.floor(Math.random() * notifyImgs.length)];
 
-    if ($.isLoon) {
-      $notification.post(scriptName, "", content, { "media-url": notifyImage });
-    } else {
-      $.msg(scriptName, "", content, { "media-url": notifyImage });
-    }
-    
+    $.msg(scriptName, "", content, { "media-url": notifyImage });
+
     resolve();
   });
 }
@@ -1355,6 +1351,7 @@ function Env(t, e) {
           case "Stash":
           case "Shadowrocket":
           default:
+            console.log('$notification')
             $notification.post(e, s, a, i(r));
             break;
           case "Quantumult X":
