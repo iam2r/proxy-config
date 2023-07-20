@@ -128,7 +128,8 @@ function toNotify() {
     ];
     const notifyImage =
       notifyImgs[Math.floor(Math.random() * notifyImgs.length)];
-    $.msg(scriptName, "", content, { "media-url": notifyImage });
+      $notification.post(scriptName, '', content);
+    // $.msg(scriptName, "", content, { "media-url": notifyImage });
     resolve();
   });
 }
