@@ -1349,7 +1349,7 @@ function Env(t, e) {
           case "Stash":
           case "Shadowrocket":
           default:
-            console.log('dsfsdfsdfsf')
+            console.log(e, s, a)
             $notification.post(e, s, a, i(r));
             break;
           case "Quantumult X":
