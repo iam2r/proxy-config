@@ -128,7 +128,13 @@ function toNotify() {
     ];
     const notifyImage =
       notifyImgs[Math.floor(Math.random() * notifyImgs.length)];
-    $.msg(scriptName, "", content, { "media-url": notifyImage });
+      
+    if (this.isLoon) {
+      $notification.post(scriptName, "", content, { "media-url": notifyImage });
+    } else {
+      $.msg(scriptName, "", content, { "media-url": notifyImage });
+    }
+
     resolve();
   });
 }
@@ -1349,8 +1355,7 @@ function Env(t, e) {
           case "Stash":
           case "Shadowrocket":
           default:
-            $notification.post('title', "subtitle", "content", i(r));
-            // $notification.post(e, s, a, i(r));
+            $notification.post(e, s, a, i(r));
             break;
           case "Quantumult X":
             $notify(e, s, a, i(r));
