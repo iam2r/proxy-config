@@ -129,14 +129,12 @@ function toNotify() {
     const notifyImage =
       notifyImgs[Math.floor(Math.random() * notifyImgs.length)];
 
-    // if ($.isLoon) {
-    //   $notification.post(scriptName, "", content, { "media-url": notifyImage });
-    // } else {
-    //   $.msg(scriptName, "", content, { "media-url": notifyImage });
-    // }
-
-    $.msg(scriptName, "", content, { "media-url": notifyImage });
-
+    if ($.isLoon) {
+      $notification.post(scriptName, "", content, { "media-url": notifyImage });
+    } else {
+      $.msg(scriptName, "", content, { "media-url": notifyImage });
+    }
+    
     resolve();
   });
 }
@@ -1364,17 +1362,17 @@ function Env(t, e) {
             break;
           case "Node.js":
         }
-      // if (!this.isMuteLog) {
-      //   let t = [
-      //     "",
-      //     "==============\ud83d\udce3\u7cfb\u7edf\u901a\u77e5\ud83d\udce3==============",
-      //   ];
-      //   t.push(e),
-      //     s && t.push(s),
-      //     a && t.push(a),
-      //     console.log(t.join("\n")),
-      //     (this.logs = this.logs.concat(t));
-      // }
+      if (!this.isMuteLog) {
+        let t = [
+          "",
+          "==============\ud83d\udce3\u7cfb\u7edf\u901a\u77e5\ud83d\udce3==============",
+        ];
+        t.push(e),
+          s && t.push(s),
+          a && t.push(a),
+          console.log(t.join("\n")),
+          (this.logs = this.logs.concat(t));
+      }
     }
     log(...t) {
       t.length > 0 && (this.logs = [...this.logs, ...t]),
