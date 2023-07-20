@@ -221,6 +221,8 @@ function Env(t, e) {
         (this.encoding = "utf-8"),
         (this.startTime = new Date().getTime()),
         Object.assign(this, e),
+        this.log(typeof e.$notification)
+        this.log(typeof e.notification)
         this.log("", `\ud83d\udd14${this.name}, \u5f00\u59cb!`);
     }
     getEnv() {
