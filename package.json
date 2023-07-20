@@ -1,0 +1,27 @@
+{
+  "name": "proxyconfig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iam2r/ProxyConfig.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iam2r/ProxyConfig/issues"
+  },
+  "homepage": "https://github.com/iam2r/ProxyConfig#readme",
+  "dependencies": {
+    "crypto-js": "^4.0.0",
+    "got": "^11.8.5",
+    "http-server": "^0.12.3",
+    "iconv-lite": "0.6.3",
+    "tough-cookie": "^4.0.0"
+  }
+}
