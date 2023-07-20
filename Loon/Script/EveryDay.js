@@ -1352,6 +1352,8 @@ function Env(t, e) {
           case "Shadowrocket":
           default:
             console.log('$notification')
+            console.log(typeof $notification)
+            console.log('$notification2')
             $notification.post(e, s, a, i(r));
             break;
           case "Quantumult X":
