@@ -8,7 +8,10 @@ const $ = new Env(scriptName);
 const request = $.http;
 !(async () => {
 	await $.wait(500);
-	$.msg('title', 'subt', 'desc');
+	$.msg('title', 'subt', 'desc', {
+		'open-url': '',
+		'media-url': 'https://s2.loli.net/2022/02/24/SG5svAxd1eXwVDK.jpg',
+	});
 })()
 	.catch((e) => $.logErr(e))
 	.finally(() => $.done());
