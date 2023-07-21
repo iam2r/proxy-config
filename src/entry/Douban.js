@@ -1,9 +1,18 @@
 /******************************************
+ * @license
  * @name 豆瓣每日推荐
- * @statement 仅供学习交流，禁止用于商业用途
- * @version 1.0.0
- ******************************************/
-import Env from '../common/Env';
+ * @statement 仅供学习交流|禁止用于商业用途
+******************************************
+Quantumult X:
+[task_local]
+06 9 * * * https://iam2r.github.io/ProxyConfig/Script/Douban.js, tag=豆瓣每日推荐, enabled=true
+******************************************
+Loon、Surge:
+[Script]
+cron "6 9 * * *" script-path=https://iam2r.github.io/ProxyConfig/Script/Douban.js, timeout=10, tag=豆瓣每日推荐
+******************************************/
+import Env from '@/common/Env';
+
 const scriptName = '好片推荐';
 const $ = new Env(scriptName);
 const request = $.http;
@@ -16,7 +25,6 @@ let $MOVIE = {};
 	.catch((e) => $.logErr(e))
 	.finally(() => $.done());
 function Douban() {
-	// 参数来源@Honye
 	const apiKey = '0ab215a8b1977939201640fa14c66bab';
 	const dateStr = $.time('yyyy-MM-dd');
 	const opts = {
@@ -54,7 +62,6 @@ function Douban() {
 }
 function toSearch() {
 	return new Promise(async (resolve) => {
-		// 资源来源@liuser
 		const sourceList = [
 			{
 				name: '高清资源',

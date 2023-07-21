@@ -1,5 +1,5 @@
-function loadModules(context) {
-	const modules = [];
+function loadModules(context:__WebpackModuleApi.RequireContext) {
+	const modules: unknown[] = [];
 	context.keys().forEach((k) => {
 		modules.push(context(k));
 	});

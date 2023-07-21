@@ -14,7 +14,6 @@
 		"experimentalDecorators": true,
 		"importHelpers": true,
 		"strict": true,
-		"jsx": "preserve",
 		"sourceMap": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
@@ -23,8 +22,8 @@
 		"paths": {
 			"@/*": ["src/*"]
 		},
-		"lib": ["esnext", "dom", "dom.iterable", "scripthost", "ES2018"]
+		"lib": ["esnext"]
 	},
-	"include": ["src/**/*.ts", "tests/**/*.ts", "src/entry/Study.js"],
+	"include": ["src/**/*"],
 	"exclude": ["node_modules"]
 }

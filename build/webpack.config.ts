@@ -19,11 +19,12 @@ const config: Configuration = {
 			return pre;
 		},
 		{
-			main: resolve(__dirname, `../src/main.js`),
+			main: resolve(__dirname, `../src/main.ts`),
 		}
 	),
 	target: 'node',
 	output: {
+		clean: true,
 		filename: 'Script/[name].js',
 		assetModuleFilename: 'Script/[name].[ext]',
 		path: resolve(__dirname, '../dist'),
@@ -66,8 +67,7 @@ const config: Configuration = {
 						extractComments: false,
 						terserOptions: {
 							output: {
-								comments: false,
-								beautify: false,
+								comments: /@license/i,
 							},
 							compress: {
 								drop_debugger: true,
@@ -93,14 +93,17 @@ const config: Configuration = {
 					new WebpackObfuscator(
 						{
 							debugProtection: true,
+							obfuscatorOptions: {
+								target: 'node',
+							},
 						},
 						[]
-					)
+					),
 			  ]
 			: [
 					new RunNodeWebpackPlugin({
 						scriptToRun: 'main.js',
-						scriptsToWatch: Entry.map((name) => `${name}.js`),
+						scriptsToWatch: ['main.js', ...Entry.map((name) => `${name}.js`)],
 					}),
 			  ]),
 	],
@@ -108,7 +111,7 @@ const config: Configuration = {
 	resolve: {
 		extensions: ['.js', '.ts'],
 		alias: {
-			'@': resolve('src'),
+			'@': resolve(__dirname, '../src'),
 		},
 	},
 };

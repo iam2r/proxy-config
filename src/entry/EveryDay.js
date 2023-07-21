@@ -1,20 +1,20 @@
 /******************************************
+ * @license 
  * @name 老黄历
- * @statement 仅供学习交流|禁止用于商业用途|脚本依赖均已注明作者|转载请注明来源
- * @version 1.0.0
+ * @statement 仅供学习交流|禁止用于商业用途
 ******************************************
 Quantumult X:
 [task_local]
-06 9 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/moyu.js, tag=摸鱼摸鱼, img-url=https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/67/04/ff/6704ff4c-b49b-de91-70ac-201c62d5296f/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png, enabled=true
+06 9 * * * https://iam2r.github.io/ProxyConfig/Script/EveryDay.js, tag=老黄历, enabled=true
 ******************************************
 Loon、Surge:
 [Script]
-cron "6 9 * * *" script-path=https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/moyu.js, timeout=10, tag=摸鱼, argument="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/67/04/ff/6704ff4c-b49b-de91-70ac-201c62d5296f/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png"
+cron "6 9 * * *" script-path=https://iam2r.github.io/ProxyConfig/Script/EveryDay.js, timeout=10, tag=老黄历
 ******************************************/
-import Env from '../common/Env';
-const scriptName = '黄历';
-const $ = Env(scriptName);
+import Env from '@/common/Env';
 
+const scriptName = '老黄历';
+const $ = Env(scriptName);
 let calendar = {};
 loadCalendar();
 const request = $.http;
@@ -36,7 +36,6 @@ const festivalList = [
 let holidayList = [];
 !(async () => {
 	await handleFestival();
-	//   await $.wait(500);
 	await toNotify();
 })()
 	.catch((e) => $.logErr(e))
@@ -97,7 +96,6 @@ function toNotify() {
 			});
 		}
 
-		// @薛定谔的大灰机
 		const notifyImgs = [
 			'https://s2.loli.net/2022/02/24/SG5svAxd1eXwVDK.jpg',
 			'https://s2.loli.net/2022/02/24/St2w79Qq5eDABiH.jpg',
@@ -175,7 +173,6 @@ const getCloseRemark = async () => {
  * 万年历爬取
  * @site https://wannianrili.bmcx.com
  * @description 获取一个月黄历|使用持久化存储
- * @author 𝒀𝒖𝒉𝒆𝒏𝒈
  * @createDate 2023-06-26
  * @returns 今日黄历
  */
@@ -259,11 +256,6 @@ function getRemainDays(timestamp) {
 /**
  * @1900-2100区间内的公历、农历互转
  * @charset UTF-8
- * @Author Jea杨(JJonline@JJonline.Cn)
- * @Time  2014-7-21
- * @Time  2016-8-13 Fixed 2033hex、Attribution Annals
- * @Time  2016-9-25 Fixed lunar LeapMonth Param Bug
- * @Version 1.0.2
  * @公历转农历：calendar.solar2lunar(1987,11,01); //[you can ignore params of prefix 0]
  * @农历转公历：calendar.lunar2solar(1987,09,10); //[you can ignore params of prefix 0]
  */

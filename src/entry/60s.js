@@ -1,17 +1,25 @@
 /******************************************
- * @name 每天60s读懂世界
- * @statement 仅供学习交流，禁止用于商业用途
- * @version 1.0.0
+ * @license
+ * @name 知乎60s读懂世界
+ * @statement 仅供学习交流|禁止用于商业用途
 ******************************************
-
+Quantumult X:
 [task_local]
-30 8 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/60s.js, tag=每天60s读懂世界
-
+06 9 * * * https://iam2r.github.io/ProxyConfig/Script/60s.js, tag=知乎60s读懂世界, enabled=true
+******************************************
+Loon、Surge:
+[Script]
+cron "6 9 * * *" script-path=https://iam2r.github.io/ProxyConfig/Script/60s.js, timeout=10, tag=知乎60s读懂世界
 ******************************************/
-import Env from '../common/Env';
+import Env from '@/common/Env';
 
 const $ = Env('每天60s读懂世界');
 !(async () => {
+	try {
+		
+	} catch (error) {
+		
+	}
 	await $.http
 		.get({
 			url: 'https://www.zhihu.com/api/v4/columns/c_1261258401923026944/items',

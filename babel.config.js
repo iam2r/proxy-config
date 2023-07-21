@@ -1,16 +1,11 @@
 module.exports = {
-	presets: [
-		['@vue/babel-preset-app', { useBuiltIns: false }],
-		[
-			'@babel/preset-typescript', // 引用Typescript插件
-		],
-	],
+	presets: [['@vue/babel-preset-app', { useBuiltIns: false }], ['@babel/preset-typescript']],
 	plugins: [
 		...[
 			{
 				libraryName: 'lodash',
 				libraryDirectory: '',
-				camel2DashComponentName: false, // default: true
+				camel2DashComponentName: false,
 			},
 		].map((options) => ['import', options, options.libraryName]),
 	],
