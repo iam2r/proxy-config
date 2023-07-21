@@ -43,16 +43,22 @@ export default function Env(name, opts) {
 			this.log('', `🔔${this.name}, 开始!`);
 		}
 
-		getEnv() {  
-            console.log(typeof $loon)
-            return 'Loon'
-            
-			if ('undefined' !== typeof $environment && $environment['surge-version']) return 'Surge';
-			if ('undefined' !== typeof $environment && $environment['stash-version']) return 'Stash';
-			if ('undefined' !== typeof module && process.env) return 'Node.js';
-			if ('undefined' !== typeof $task) return 'Quantumult X';
-			if ('undefined' !== typeof $loon) return 'Loon';
-			if ('undefined' !== typeof $rocket) return 'Shadowrocket';
+		getEnv() {
+			switch (true) {
+				case 'undefined' !== typeof $loon:
+					return 'Loon';
+				case 'undefined' !== typeof $rocket:
+					return 'Shadowrocket';
+                case 'undefined' !== typeof $environment && $environment['surge-version']:
+                    return 'Surge'    
+                case 'undefined' !== typeof $environment && $environment['stash-version']:
+                    return 'Stash'  
+				case 'undefined' !== typeof $task:
+					return 'Quantumult X';
+				default:
+					break;
+			}
+			return 'Node.js';
 		}
 
 		isNode() {
