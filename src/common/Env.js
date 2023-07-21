@@ -1,4 +1,4 @@
-export default function Env(name, opts) {
+export default function Env(name, opts) { 
 	class Http {
 		constructor(env) {
 			this.env = env;
@@ -49,10 +49,10 @@ export default function Env(name, opts) {
 					return 'Loon';
 				case 'undefined' !== typeof $rocket:
 					return 'Shadowrocket';
-                case 'undefined' !== typeof $environment && $environment['surge-version']:
-                    return 'Surge'    
-                case 'undefined' !== typeof $environment && $environment['stash-version']:
-                    return 'Stash'  
+				case 'undefined' !== typeof $environment && $environment['surge-version']:
+					return 'Surge';
+				case 'undefined' !== typeof $environment && $environment['stash-version']:
+					return 'Stash';
 				case 'undefined' !== typeof $task:
 					return 'Quantumult X';
 				default:
@@ -530,7 +530,7 @@ export default function Env(name, opts) {
 							}
 							case 'Loon': {
 								let openUrl = rawopts.openUrl || rawopts.url || rawopts['open-url'];
-								let mediaUrl = rawopts.mediaUrl || rawopts['media-url'] || 'https://picsum.photos/200';
+								let mediaUrl = rawopts.mediaUrl || rawopts['media-url'];
 								return { openUrl, mediaUrl };
 							}
 							case 'Quantumult X': {
