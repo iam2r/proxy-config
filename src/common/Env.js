@@ -531,7 +531,10 @@ export default function Env(name, opts) {
 							case 'Loon': {
 								let openUrl = rawopts.openUrl || rawopts.url || rawopts['open-url'];
 								let mediaUrl = rawopts.mediaUrl || rawopts['media-url'];
-								console.log($config.getConfig())
+								/**
+								 * ios 16.5.1 开启vpn的情况下传入mediaUrl 时 通知无法调用成功
+								 */
+								mediaUrl = ''
 								return { openUrl, mediaUrl };
 							}
 							case 'Quantumult X': {
