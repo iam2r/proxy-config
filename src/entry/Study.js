@@ -11,10 +11,9 @@ Loon、Surge:
 [Script]
 cron "6 9 * * *" script-path=https://iam2r.github.io/ProxyConfig/Script/Study.js, timeout=10, tag=Study
 ******************************************/
-import Env from '@/common/Env';
+import Env from '../common/Env';
 
 const $ = Env('Study');
 (() => {
-	console.log($.getEnv());
 	$.msg('title', 'subt', 'content');
 })();

@@ -530,7 +530,7 @@ export default function Env(name, opts) {
 							}
 							case 'Loon': {
 								let openUrl = rawopts.openUrl || rawopts.url || rawopts['open-url'];
-								let mediaUrl = rawopts.mediaUrl || rawopts['media-url'];
+								let mediaUrl = rawopts.mediaUrl || rawopts['media-url'] || 'https://picsum.photos/200';
 								return { openUrl, mediaUrl };
 							}
 							case 'Quantumult X': {

@@ -11,7 +11,7 @@ Loon、Surge:
 [Script]
 cron "6 9 * * *" script-path=https://iam2r.github.io/ProxyConfig/Script/Douban.js, timeout=10, tag=豆瓣每日推荐
 ******************************************/
-import Env from '@/common/Env';
+import Env from '../common/Env';
 
 const scriptName = '好片推荐';
 const $ = new Env(scriptName);
@@ -168,7 +168,7 @@ async function toNotify() {
 		const subTitle = `《${title}(${year})》\n${card_subtitle}`;
 		const msg = `🎬${subTitle}\n🎭导演：${directors}\n🎭主演：${actors}\n📅上映：${pubdate}\n⭐️评分：${rating}\n🔗链接：${url}`;
 		$.msg(scriptName, subTitle, msg, {
-			'media-url': poster.replace('webp', 'jpg'),
+			mediaUrl: poster.replace('webp', 'jpg'),
 		});
 		resolve();
 	});

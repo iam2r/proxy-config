@@ -11,7 +11,7 @@ Loon、Surge:
 [Script]
 cron "6 9 * * *" script-path=https://iam2r.github.io/ProxyConfig/Script/EveryDay.js, timeout=10, tag=老黄历
 ******************************************/
-import Env from '@/common/Env';
+import Env from '../common/Env';
 
 const scriptName = '老黄历';
 const $ = Env(scriptName);
@@ -109,7 +109,7 @@ function toNotify() {
 			'https://s2.loli.net/2022/02/24/iVUOzxqIBNTA5v4.jpg',
 		];
 		const notifyImage = notifyImgs[Math.floor(Math.random() * notifyImgs.length)];
-		$.msg(scriptName, '', content, { 'media-url': $.isLoon() ? '' : notifyImage });
+		$.msg(scriptName, '', content, { mediaUrl: $.isLoon() ? '' : notifyImage });
 		resolve();
 	});
 }

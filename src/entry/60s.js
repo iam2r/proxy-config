@@ -11,15 +11,12 @@ Loon、Surge:
 [Script]
 cron "6 9 * * *" script-path=https://iam2r.github.io/ProxyConfig/Script/60s.js, timeout=10, tag=知乎60s读懂世界
 ******************************************/
-import Env from '@/common/Env';
+import Env from '../common/Env';
 
 const $ = Env('每天60s读懂世界');
 !(async () => {
 	try {
-		
-	} catch (error) {
-		
-	}
+	} catch (error) {}
 	await $.http
 		.get({
 			url: 'https://www.zhihu.com/api/v4/columns/c_1261258401923026944/items',
@@ -60,7 +57,7 @@ const $ = Env('每天60s读懂世界');
 			const { zh, en } = await getCloseRemark();
 			const _content = mainCon + `\n【微语】\t${en}\t${zh}`;
 
-			$.msg(summary, '', _content, { 'media-url': $.isLoon() ? '' : thumb });
+			$.msg(summary, '', _content, { mediaUrl: $.isLoon() ? '' : thumb });
 		})
 		.catch((err) => $.logErr(err || '网络请求失败'));
 })().finally(() => $.done());
