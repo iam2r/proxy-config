@@ -11,16 +11,11 @@ Loon、Surge:
 [Script]
 cron "6 9 * * *" script-path=https://iam2r.github.io/ProxyConfig/Script/StudyWithMediaUrl.js, timeout=10, tag=StudyWithMediaUrl
 ******************************************/
-// import Env from '../common/Env';
+import Env from '../common/Env';
 
-// const $ = Env('StudyWithMediaUrl');
+const $ = Env('StudyWithMediaUrl');
 (() => {
-	// $.msg('title', 'subt', 'content', {
-	// 	mediaUrl: 'https://fastly.picsum.photos/id/852/200/200.jpg?hmac=4UHLpiS9j3YDnvq-w-MqnP5-ymiyvMs6BNV5ukoTRrI',
-	// });
-
-	
-	$notification.post('title', 'subt', 'content', {
+	$.msg('title', 'subt', 'content', {
 		mediaUrl: 'https://fastly.picsum.photos/id/852/200/200.jpg?hmac=4UHLpiS9j3YDnvq-w-MqnP5-ymiyvMs6BNV5ukoTRrI',
 	});
 })();

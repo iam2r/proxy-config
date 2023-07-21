@@ -109,7 +109,7 @@ function toNotify() {
 			'https://s2.loli.net/2022/02/24/iVUOzxqIBNTA5v4.jpg',
 		];
 		const notifyImage = notifyImgs[Math.floor(Math.random() * notifyImgs.length)];
-		$.msg(scriptName, '', content, { mediaUrl: $.isLoon() ? '' : notifyImage });
+		$.msg(scriptName, '', content, { mediaUrl: notifyImage });
 		resolve();
 	});
 }

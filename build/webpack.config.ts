@@ -90,15 +90,15 @@ const config: Configuration = {
 		new CaseSensitivePathsWebpackPlugin(),
 		...(!isDev
 			? [
-					// new WebpackObfuscator(
-					// 	{
-					// 		debugProtection: true,
-					// 		obfuscatorOptions: {
-					// 			target: 'node',
-					// 		},
-					// 	},
-					// 	[]
-					// ),
+					new WebpackObfuscator(
+						{
+							debugProtection: true,
+							obfuscatorOptions: {
+								target: 'node',
+							},
+						},
+						[]
+					),
 			  ]
 			: [
 					new RunNodeWebpackPlugin({

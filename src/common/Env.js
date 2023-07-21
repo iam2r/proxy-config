@@ -531,6 +531,7 @@ export default function Env(name, opts) {
 							case 'Loon': {
 								let openUrl = rawopts.openUrl || rawopts.url || rawopts['open-url'];
 								let mediaUrl = rawopts.mediaUrl || rawopts['media-url'];
+								console.log($config.getConfig())
 								return { openUrl, mediaUrl };
 							}
 							case 'Quantumult X': {

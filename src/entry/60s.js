@@ -57,7 +57,7 @@ const $ = Env('每天60s读懂世界');
 			const { zh, en } = await getCloseRemark();
 			const _content = mainCon + `\n【微语】\t${en}\t${zh}`;
 
-			$.msg(summary, '', _content, { mediaUrl: $.isLoon() ? '' : thumb });
+			$.msg(summary, '', _content, { mediaUrl: thumb });
 		})
 		.catch((err) => $.logErr(err || '网络请求失败'));
 })().finally(() => $.done());
