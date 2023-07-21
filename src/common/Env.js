@@ -446,7 +446,7 @@ export default function Env(name, opts) {
 		 * @param {number} 可选: 根据指定时间戳返回格式化日期
 		 *
 		 */
-		time(fmt, ts = null) {
+		time(fmt = 'yyyy-MM-dd HH:mm:ss.S', ts = null) {
 			const date = ts ? new Date(ts) : new Date();
 			let o = {
 				'M+': date.getMonth() + 1,
@@ -588,19 +588,24 @@ export default function Env(name, opts) {
 				logs.push(title);
 				subt ? logs.push(subt) : '';
 				desc ? logs.push(desc) : '';
-				console.log(logs.join('\n'));
-				this.logs = this.logs.concat(logs);
+				this.log(...logs);
 			}
 		}
 
 		log(...logs) {
 			if (logs.length > 0) {
-				this.logs = [...this.logs, ...logs];
+				this.logs = [
+					...this.logs,
+					{
+						time: this.time(),
+						logs,
+					},
+				];
 			}
 			console.log(logs.join(this.logSeparator));
 		}
 
-		logErr(err, msg) {
+		logErr(err) {
 			switch (this.getEnv()) {
 				case 'Surge':
 				case 'Loon':
