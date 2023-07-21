@@ -10,7 +10,7 @@
 		"build": "cross-env NODE_ENV=production webpack --progress --config build/webpack.config.ts"
 	},
 	"lint-staged": {
-		"*": "yarn run prettier"
+		"*": "yarn prettier"
 	},
 	"repository": {
 		"type": "git",
