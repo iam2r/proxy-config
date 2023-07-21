@@ -1,11 +1,11 @@
-import { Configuration } from 'webpack';
 import fs from 'fs';
+import { resolve } from 'path';
+import { Configuration } from 'webpack';
 import TerserWebpackPlugin from 'terser-webpack-plugin';
 import WebpackObfuscator from 'webpack-obfuscator';
 import CaseSensitivePathsWebpackPlugin from 'case-sensitive-paths-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+import CopyWebpackPlugin, { ToType } from 'copy-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import { resolve } from 'path';
 import nodeExternals from 'webpack-node-externals';
 import RunNodeWebpackPlugin from 'run-node-webpack-plugin';
 import { babelExclude } from './util/loader';
@@ -81,7 +81,7 @@ const config: Configuration = {
 			patterns: [
 				{
 					from: resolve(__dirname, '../public'),
-					toType: 'dir',
+					toType: 'dir' as ToType,
 				},
 			].filter(({ from }) => fs.existsSync(from)),
 		}),
