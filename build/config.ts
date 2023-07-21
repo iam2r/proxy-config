@@ -1,1 +1,1 @@
-export const Entry = ['Study', 'StudyWithMediaUrl', '60s', 'Douban', 'EveryDay'];
+export const Entry = ['60s', 'Douban', 'EveryDay'];

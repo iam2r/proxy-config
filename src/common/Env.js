@@ -42,7 +42,9 @@ export default function Env(name, opts) {
 			Object.assign(this, opts);
 			this.log('', `🔔${this.name}, 开始!`);
 		}
-
+		/**
+		 * @returns {'Loon'|'Shadowrocket'|'Surge'|'Stash'|'Quantumult X'|'Node.js'}
+		 */
 		getEnv() {
 			switch (true) {
 				case 'undefined' !== typeof $loon:
@@ -517,20 +519,22 @@ export default function Env(name, opts) {
 							case 'Quantumult X':
 								return { 'open-url': rawopts };
 							case 'Node.js':
-								return undefined;
+								return {
+									open: openUrl,
+								};
 						}
-					case 'object':
+					case 'object': {
+						let openUrl = rawopts.openUrl || rawopts['open-url'] || rawopts.url;
+						let mediaUrl = rawopts.mediaUrl || rawopts['media-url'];
+						let updatePasteboard = rawopts.updatePasteboard || rawopts['update-pasteboard'];
 						switch (this.getEnv()) {
 							case 'Surge':
 							case 'Stash':
 							case 'Shadowrocket':
 							default: {
-								let openUrl = rawopts.url || rawopts.openUrl || rawopts['open-url'];
 								return { url: openUrl };
 							}
 							case 'Loon': {
-								let openUrl = rawopts.openUrl || rawopts.url || rawopts['open-url'];
-								let mediaUrl = rawopts.mediaUrl || rawopts['media-url'];
 								/**
 								 * ios 16.5.1 开启vpn的情况下传入mediaUrl 时 通知无法调用成功
 								 */
@@ -538,9 +542,6 @@ export default function Env(name, opts) {
 								return { openUrl, mediaUrl };
 							}
 							case 'Quantumult X': {
-								let openUrl = rawopts['open-url'] || rawopts.url || rawopts.openUrl;
-								let mediaUrl = rawopts['media-url'] || rawopts.mediaUrl;
-								let updatePasteboard = rawopts['update-pasteboard'] || rawopts.updatePasteboard;
 								return {
 									'open-url': openUrl,
 									'media-url': mediaUrl,
@@ -548,8 +549,12 @@ export default function Env(name, opts) {
 								};
 							}
 							case 'Node.js':
-								return undefined;
+								return {
+									contentImage: mediaUrl,
+									open: openUrl,
+								};
 						}
+					}
 					default:
 						return undefined;
 				}
@@ -567,6 +572,14 @@ export default function Env(name, opts) {
 						$notify(title, subt, desc, toEnvOpts(opts));
 						break;
 					case 'Node.js':
+						const notifier = require('node-notifier');
+						notifier.notify({
+							title: title,
+							subtitle: subt,
+							message: desc,
+							sound: true,
+							...toEnvOpts(opts),
+						});
 						break;
 				}
 			}
