@@ -43,7 +43,10 @@ export default function Env(name, opts) {
 			this.log('', `🔔${this.name}, 开始!`);
 		}
 
-		getEnv() {
+		getEnv() {  
+            console.log(typeof $loon)
+            return 'Loon'
+            
 			if ('undefined' !== typeof $environment && $environment['surge-version']) return 'Surge';
 			if ('undefined' !== typeof $environment && $environment['stash-version']) return 'Stash';
 			if ('undefined' !== typeof module && process.env) return 'Node.js';
