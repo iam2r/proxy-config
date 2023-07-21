@@ -1,4 +1,4 @@
-export default function Env(name, opts) { 
+export default function Env(name, opts) {
 	class Http {
 		constructor(env) {
 			this.env = env;
@@ -534,7 +534,7 @@ export default function Env(name, opts) {
 								/**
 								 * ios 16.5.1 开启vpn的情况下传入mediaUrl 时 通知无法调用成功
 								 */
-								mediaUrl = ''
+								mediaUrl = '';
 								return { openUrl, mediaUrl };
 							}
 							case 'Quantumult X': {

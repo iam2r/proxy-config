@@ -1,3 +1,3 @@
 module.expots = {
-	'**/*.{json,md,js,ts}': ['prettier --write'],
+	'**/*.{json,md,js,ts}': ['yarn run prettier'],
 };
