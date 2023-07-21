@@ -1,6 +1,7 @@
 #!name = Redirect
 #!desc = Google Redirect & Self Redirect
 #!icon = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Loop.png
+#!author = @iam2r
 
 [Rewrite]
 # Redirect Google Search Service
