@@ -128,26 +128,30 @@ export default function Env(name, opts) {
 			});
 		}
 
-		runScript(script, runOpts) {
-			return new Promise((resolve) => {
-				let httpapi = this.getdata('@chavy_boxjs_userCfgs.httpapi');
-				httpapi = httpapi ? httpapi.replace(/\n/g, '').trim() : httpapi;
-				let httpapi_timeout = this.getdata('@chavy_boxjs_userCfgs.httpapi_timeout');
-				httpapi_timeout = httpapi_timeout ? httpapi_timeout * 1 : 20;
-				httpapi_timeout = runOpts && runOpts.timeout ? runOpts.timeout : httpapi_timeout;
-				const [key, addr] = httpapi.split('@');
-				const opts = {
-					url: `http://${addr}/v1/scripting/evaluate`,
-					body: {
-						script_text: script,
-						mock_type: 'cron',
+		async runScript(script, runOpts) {
+			try {
+				return await new Promise((resolve) => {
+					let httpapi = this.getdata('@chavy_boxjs_userCfgs.httpapi');
+					httpapi = httpapi ? httpapi.replace(/\n/g, '').trim() : httpapi;
+					let httpapi_timeout = this.getdata('@chavy_boxjs_userCfgs.httpapi_timeout');
+					httpapi_timeout = httpapi_timeout ? httpapi_timeout * 1 : 20;
+					httpapi_timeout = runOpts && runOpts.timeout ? runOpts.timeout : httpapi_timeout;
+					const [key_1, addr] = httpapi.split('@');
+					const opts = {
+						url: `http://${addr}/v1/scripting/evaluate`,
+						body: {
+							script_text: script,
+							mock_type: 'cron',
+							timeout: httpapi_timeout,
+						},
+						headers: { 'X-Key': key_1, Accept: '*/*' },
 						timeout: httpapi_timeout,
-					},
-					headers: { 'X-Key': key, Accept: '*/*' },
-					timeout: httpapi_timeout,
-				};
-				this.post(opts, (err, resp, body) => resolve(body));
-			}).catch((e) => this.logErr(e));
+					};
+					this.post(opts, (err, resp, body) => resolve(body));
+				});
+			} catch (e) {
+				return this.logErr(e);
+			}
 		}
 
 		loaddata() {
