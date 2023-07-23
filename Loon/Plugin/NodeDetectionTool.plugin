@@ -6,5 +6,5 @@
 
 [Script]
 generic script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/CloudflareSpeedtest.js, timeout = 10, tag = Cloudflare Speedtest, img-url = speedometer.system
-generic script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/LocationDetection.js, timeout = 10, tag = Location Detection, img-url = location.circle.system
+generic script-path = https://iam2r.github.io/ProxyConfig/Script/LocationDetection.js, timeout = 10, tag = Location Detection, img-url = location.circle.system
 generic script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/NodeUnlockDetection.js, timeout = 20, tag = Node Unlock Detection, img-url = play.circle.system
