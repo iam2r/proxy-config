@@ -1,1 +1,1 @@
-export const Entry = ['60s', 'Douban', 'EveryDay'];
+export const Entry = ['LocationDetection', '60s', 'Douban', 'EveryDay'];
