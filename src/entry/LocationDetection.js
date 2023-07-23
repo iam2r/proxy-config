@@ -25,6 +25,7 @@ const messages = {
 		lat: 'Lat',
 		title: 'LocationDetection',
 		timeout: 'Timeout',
+		node: 'Node',
 	},
 	zh: {
 		ip: '远端IP地址',
@@ -37,6 +38,7 @@ const messages = {
 		lat: '远端纬度',
 		title: '地理位置查询',
 		timeout: '查询超时',
+		node: '节点',
 	},
 };
 const locale = arg?.locale;
@@ -193,7 +195,7 @@ function json2info(cnt) {
     
     -------------------------------
     <br/>
-    <font color=#6959CD> <b>Node</b> ➟ ${$.getPolicy()} </font>
+    <font color=#6959CD> <b>${$.i18n.t('node')}</b> ➟ ${$.getPolicy()} </font>
     </p>`;
 	return result;
 }
