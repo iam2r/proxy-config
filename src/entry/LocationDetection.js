@@ -42,7 +42,7 @@ const messages = {
 const locale = arg?.locale;
 const $ = Env('LocationDetection', {
 	i18nOptions: {
-		locale: locale && Object.keys(messages).includes(locale) ? locale : 'zh',
+		locale: locale && Object.keys(messages).includes(locale) ? locale : 'en',
 		messages,
 	},
 });
