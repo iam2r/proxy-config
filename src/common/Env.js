@@ -1,4 +1,10 @@
-export default function Env(name, opts) {
+/**
+ *
+ * @param {string} name
+ * @param {{i18nOptions?:{locale:string,messages:Record<string,any}}} [opts]
+ * @returns
+ */
+export default function Env(name, opts = {}) {
 	class Http {
 		constructor(env) {
 			this.env = env;
@@ -27,10 +33,37 @@ export default function Env(name, opts) {
 		}
 	}
 
+	class I18n {
+		constructor(env, i18nOptions = {}) {
+			this.env = env;
+			this.setLocale(i18nOptions.locale);
+			this.setMessages(i18nOptions.messages);
+		}
+		setMessages(messages = {}) {
+			this.messages = messages;
+		}
+		/**
+		 *
+		 * @param {string} locale
+		 */
+		setLocale(locale) {
+			this.locale = locale;
+		}
+		/**
+		 * @param {string} key
+		 * @returns {string}
+		 */
+		t(key) {
+			const message = this.messages[this.locale] || {};
+			return this.env.lodash_get(message, key) || key;
+		}
+	}
+
 	return new (class {
 		constructor(name, opts) {
 			this.name = name;
 			this.http = new Http(this);
+			this.i18n = new I18n(this, opts.i18nOptions);
 			this.data = null;
 			this.dataFile = 'box.dat';
 			this.logs = [];
@@ -644,6 +677,7 @@ export default function Env(name, opts) {
 					$done(val);
 					break;
 				case 'Node.js':
+					console.log(val);
 					process.exit(1);
 					break;
 			}

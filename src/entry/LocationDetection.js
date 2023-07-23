@@ -7,31 +7,52 @@
 ******************************************/
 
 import Env from '../common/Env';
-
-const $ = Env('LocationDetection');
-
-const getRequestOpts = () => {
-	switch ($.getEnv()) {
-		case 'Loon':
-			return {
-				node: getPolicy(),
-			};
-		case 'Quantumult X':
-			return {
-				opts: {
-					policy: getPolicy(),
-				},
-			};
-		case 'Node.js':
-		default:
-			return {};
-	}
+const messages = {
+	en: {
+		ip: 'IP',
+		asn: 'ASN',
+		org: 'ASN ORG',
+		isp: 'ISP',
+		countryCode: 'Country',
+		city: 'City',
+		lon: 'Lon',
+		lat: 'Lat',
+		title: 'LocationDetection',
+		timeout: 'Timeout',
+	},
+	zh: {
+		ip: '远端IP地址',
+		asn: '远端IP ASN',
+		org: 'ASN所属机构',
+		isp: '远端ISP',
+		countryCode: '远端IP地区',
+		city: '远端IP城市',
+		lon: '远端经度',
+		lat: '远端纬度',
+		title: '地理位置查询',
+		timeout: '查询超时',
+	},
 };
+const $ = Env('LocationDetection', {
+	i18nOptions: {
+		locale: 'en',
+		messages,
+	},
+});
 
 function json2info(cnt) {
 	cnt = JSON.parse(cnt);
-	const paras = ['query', 'as', 'org', 'isp', 'countryCode', 'city', 'lon', 'lat'];
-	const paran = ['IP', 'ASN', 'ASN ORG', 'ISP', 'Country', 'City', 'Lon', 'Lat'];
+	const dataKeyMapI18nKey = {
+		query: 'ip',
+		as: 'asn',
+		org: 'org',
+		isp: 'isp',
+		countryCode: 'countryCode',
+		city: 'city',
+		lon: 'lon',
+		lat: 'lat',
+	};
+
 	const flags = new Map([
 		['AC', '🇦🇨'],
 		['AE', '🇦🇪'],
@@ -155,10 +176,10 @@ function json2info(cnt) {
 	const result = `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: thin">
     -------------------------------
     <br/>
-    ${paras.reduce((pre, key, i) => {
+    ${Object.entries(dataKeyMapI18nKey).reduce((pre, [key, i18nKey], i) => {
 			const value = cnt[key];
 			pre += value
-				? `<b><font>${paran[i]}</font> : </b><font>${key === 'countryCode' ? `${value} ⟦${flags.get(value)}⟧` : value}</font><br/>`
+				? `<b><font>${$.i18n.t(i18nKey)}</font> : </b><font>${key === 'countryCode' ? `${value} ⟦${flags.get(value)}⟧` : value}</font><br/>`
 				: '';
 			return pre;
 		}, '')}
@@ -167,8 +188,6 @@ function json2info(cnt) {
     <br/>
     <font color=#6959CD> <b>Node</b> ➟ ${$.getPolicy()} </font>
     </p>`;
-	console.log(result);
-
 	return result;
 }
 
@@ -182,11 +201,13 @@ function json2info(cnt) {
 				$.getPolicy()
 			)
 		);
-		$.done({ title: 'LocationDetection', htmlMessage: data ? json2info(data) : '' });
+		$.done({ title: $.i18n.t('title'), htmlMessage: data ? json2info(data) : '' });
 	} catch (error) {
 		$.done({
-			title: 'LocationDetection',
-			htmlMessage: `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: bold;"></br></br>🔴 Timeout</p>`,
+			title: $.i18n.t('title'),
+			htmlMessage: `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: bold;"></br></br>🔴 ${$.i18n.t(
+				'timeout'
+			)}</p>`,
 		});
 	}
 })();
