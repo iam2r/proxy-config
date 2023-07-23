@@ -2,9 +2,15 @@
  * @license
  * @name 节点地理位置查询
  * @statement 仅供学习交流|禁止用于商业用途
+ * 参数配置通过argument传入，用=连接key及相应value，用&链接各种key，可以任意选择想填入的参数
+locale： 国际化语言（zh｜en）
 ******************************************
 
 ******************************************/
+let arg;
+if (typeof $argument != 'undefined') {
+	arg = Object.fromEntries($argument.split('&').map((item) => item.split('=')));
+}
 
 import Env from '../common/Env';
 const messages = {
@@ -33,9 +39,10 @@ const messages = {
 		timeout: '查询超时',
 	},
 };
+const locale = arg?.locale;
 const $ = Env('LocationDetection', {
 	i18nOptions: {
-		locale: 'en',
+		locale: locale && Object.keys(messages).includes(locale) ? locale : 'zh',
 		messages,
 	},
 });
