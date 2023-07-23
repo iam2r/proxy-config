@@ -17,7 +17,7 @@ const messages = {
 	en: {
 		ip: 'IP',
 		asn: 'ASN',
-		org: 'ASN ORG',
+		org: 'ORG',
 		isp: 'ISP',
 		countryCode: 'Country',
 		city: 'City',
