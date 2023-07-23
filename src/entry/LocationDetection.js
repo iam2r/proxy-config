@@ -30,7 +30,9 @@ const getRequestOpts = () => {
 			};
 		case 'Quantumult X':
 			return {
-				policy: getPolicy(),
+				opts: {
+					policy: getPolicy(),
+				},
 			};
 		case 'Node.js':
 		default:
