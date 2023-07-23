@@ -648,5 +648,43 @@ export default function Env(name, opts) {
 					break;
 			}
 		}
+
+		getPolicy() {
+			switch (this.getEnv()) {
+				case 'Loon':
+					return $environment.params.node;
+				case 'Quantumult X':
+					return $environment.params;
+				case 'Node.js':
+					return '';
+				default:
+					return $environment.params;
+			}
+		}
+
+		/**
+		 * Construct Redirect Reqeusts
+		 * @param {Object} request - Original Request Content
+		 * @param {Object} proxyName - Proxies Name
+		 * @return {Object} Modify Request Content with Policy
+		 */
+		requestWithPolicy(request = {}, proxyName = '') {
+			if (proxyName) {
+				if (this.isLoon()) request.node = proxyName;
+				if (this.isQuanX()) {
+					if (request.opts) request.opts.policy = proxyName;
+					else request.opts = { policy: proxyName };
+				}
+				if (this.isSurge()) {
+					delete request.id;
+					request.headers['X-Surge-Policy'] = proxyName;
+					request.policy = proxyName;
+				}
+				if (this.isStash()) request.headers['X-Stash-Selected-Proxy'] = encodeURI(proxyName);
+				if (this.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, '');
+			}
+
+			return request;
+		}
 	})(name, opts);
 }

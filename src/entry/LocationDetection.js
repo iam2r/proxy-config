@@ -10,18 +10,6 @@ import Env from '../common/Env';
 
 const $ = Env('LocationDetection');
 
-const getPolicy = () => {
-	switch ($.getEnv()) {
-		case 'Loon':
-			return $environment.params.node;
-		case 'Quantumult X':
-			return $environment.params;
-		case 'Node.js':
-		default:
-			return '';
-	}
-};
-
 const getRequestOpts = () => {
 	switch ($.getEnv()) {
 		case 'Loon':
@@ -177,7 +165,7 @@ function json2info(cnt) {
     
     -------------------------------
     <br/>
-    <font color=#6959CD> <b>Node</b> ➟ ${getPolicy()} </font>
+    <font color=#6959CD> <b>Node</b> ➟ ${$.getPolicy()} </font>
     </p>`;
 	console.log(result);
 
@@ -186,10 +174,14 @@ function json2info(cnt) {
 
 (async () => {
 	try {
-		const { body: data } = await $.http.get({
-			url: 'http://ip-api.com/json/',
-			...getRequestOpts(),
-		});
+		const { body: data } = await $.http.get(
+			$.requestWithPolicy(
+				{
+					url: 'http://ip-api.com/json/',
+				},
+				$.getPolicy()
+			)
+		);
 		$.done({ title: 'LocationDetection', htmlMessage: data ? json2info(data) : '' });
 	} catch (error) {
 		$.done({
