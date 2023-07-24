@@ -5,7 +5,8 @@
 
 [Rewrite]
 # Redirect Google Search Service
-^https?:\/\/(www.)?(g|google)\.cn 302 https://www.google.com
+^https?:\/\/(www.)?(g|google)\.cn\/$ 302 https://www.google.com
+^https?:\/\/(www.)?(g|google)\.cn\/search 302 https://www.google.com/search
 
 # Redirect Google Maps Service
 ^https?:\/\/(ditu|maps).google\.cn 302 https://maps.google.com
