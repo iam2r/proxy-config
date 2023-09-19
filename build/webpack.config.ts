@@ -69,8 +69,6 @@ const config = merge<Configuration>(
 					},
 				].filter(({ from }) => fs.existsSync(from)),
 			}),
-			new ForkTsCheckerWebpackPlugin(),
-			new CaseSensitivePathsWebpackPlugin(),
 		],
 	},
 	isDev
@@ -78,6 +76,8 @@ const config = merge<Configuration>(
 				mode: 'development',
 				watch: true,
 				plugins: [
+					new ForkTsCheckerWebpackPlugin(),
+					new CaseSensitivePathsWebpackPlugin(),
 					new RunNodeWebpackPlugin({
 						scriptToRun: 'main.js',
 						scriptsToWatch: ['main.js', ...Entry.map((name) => `${name}.js`)],
